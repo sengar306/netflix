@@ -17,19 +17,16 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  searchResult:any;
+ searchResul:any=[];
   searchForm = new FormGroup({
     'movieName':new FormControl(null)
   });
 
-  submitForm()
-  {
-      console.log(this.searchForm.value,'searchform#');
-      this.service.getSearchMovie(this.searchForm.value).subscribe((result)=>{
-          console.log(result,'searchmovie##');
-          this.searchResult = result.results;
-      });
-  }
+ submitForm(){
+  console.log(this.searchForm.value,"#search");
+  this.service.searchMovieApiData(this.searchForm.value).subscribe((result)=>{
+      this.searchResul=result.results;
+  })
+ }
 
 }
